@@ -1,0 +1,68 @@
+exclude: ^uv\.lock$
+default_language_version:
+  python: python3.11
+repos:
+  # 1. General repository hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-ast
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: detect-private-key
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        exclude: \.png$
+
+  # 2. Import sorting (isort)
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: [--profile=black, --line-length=79]
+
+  # 3. Ruff (linter + formatter)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
+      - id: ruff
+        name: ruff (linting)
+        args: [--fix]
+      - id: ruff-format
+        name: ruff (formatting)
+
+  # 4. Spell checker
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        name: codespell (spell checking)
+        args:
+          - --ignore-words-list=ans,crate,fo,followings,hist,iff,iam,ine,ist,lamda,localy,manuel,nd,ot,rouge,ser,te,technik,ue,uint,visability,whats
+          - --skip=*.ipynb,*.json,*.csv,*.tsv,*.parquet,*.feather,*.pickle,*.pkl,*.pb,*.bin,*.md5,*.sha256,*.pyc,__pycache__,.git,.pytest_cache,.mypy_cache,.ruff_cache,.venv,venv,env,dist,build,*.egg-info,.ipynb_checkpoints
+          - --quiet-level=2
+
+  # 5. Security checking
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.6
+    hooks:
+      - id: bandit
+        name: bandit (security)
+        args: [-ll, -c, pyproject.toml]
+
+  # 6. Jupyter notebook checking
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.7.1
+    hooks:
+      - id: nbqa-ruff
+        args: [--fix]
+      - id: nbqa-isort
+        args: [--profile=black, --line-length=88]
