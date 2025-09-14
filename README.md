@@ -19,7 +19,7 @@ uv run jupyter notebook
 ```
 
 ## Theory
-For a more detailed explanation of the methods, see theory.md
+For a more detailed explanation of the methods, see docs/theory.md
 
 ## Tests
 Examples of calling functions and working methods can be found in the notebooks/test.ipynb
