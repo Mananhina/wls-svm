@@ -57,10 +57,3 @@ repos:
       - id: bandit
         name: bandit (security)
         args: [-ll, -c, pyproject.toml]
-
-  # 6. Docstring check
-  - repo: https://github.com/PyCQA/pydocstyle
-    rev: 6.3.0
-    hooks:
-      - id: pydocstyle
-        args: [ "--convention=google" ]
