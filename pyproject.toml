@@ -1,10 +1,11 @@
 [project]
 name = "WLS-SVM"
 version = "0.1.0"
-description = "Add your description here"
+description = "Implementation of LS-SVM and WLS-SVM algorithms"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "jupyter>=1.1.1",
     "numpy>=2.3.3",
     "scipy>=1.16.1",
     "torch>=2.8.0",
