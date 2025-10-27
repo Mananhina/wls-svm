@@ -606,6 +606,9 @@ class LSSVC(LSSVM):
                 # Save data used to train the model (all training data are support vectors)
                 # and call optimization methods - methods for constructing and solving SLE
                 if self.on_GPU:
+                    self.sv_x = torch.FloatTensor(X).to(self.device)
+                    self.sv_y = torch.FloatTensor(y_reshaped).to(self.device)
+                    self.y_labels = torch.FloatTensor(self.y_labels).to(self.device)
                     self.b[i], self.alpha[i] = self._optimize_parameters_GPU(
                         X,
                         y_labels,
@@ -616,6 +619,8 @@ class LSSVC(LSSVM):
                         **solve_sle_params,
                     )
                 else:
+                    self.sv_x = X
+                    self.sv_y = y_reshaped
                     self.b[i], self.alpha[i] = self._optimize_parameters(
                         X, y_labels, weighted, n_iter_weight, weight_param
                     )
