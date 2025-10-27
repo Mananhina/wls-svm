@@ -12,11 +12,11 @@ def get_kernel(name, **params):
     """Get kernel function for input vectors with numpy computations.
 
     Args:
-        name:
-        **params:
+        name: the name of the kernel function to use.
+        **params: special parameters for individual kernels.
 
     Returns:
-
+        The selected kernel function.
     """
 
     def linear(x_i, x_j):
@@ -46,14 +46,14 @@ def get_kernel(name, **params):
 def torch_get_kernel(
     name: Literal["linear", "poly", "rbf", "sigmoid"] = "sigmoid", **params
 ):
-    """Get kernel function for input vectors with pytorch computations.
+    """Get kernel function for input vectors with pytorch computations. Analog of the CPU version.
 
     Args:
-        name:
-        **params:
+        name: the name of the kernel function to use.
+        **params: special parameters for individual kernels.
 
     Returns:
-
+        The selected kernel function.
     """
 
     def linear(x_i, x_j):
